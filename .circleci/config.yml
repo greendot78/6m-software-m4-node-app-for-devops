@@ -34,10 +34,10 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/check
-      - docker/build
-          image: greendot78/node-app
+      - docker/build:
+          image: greendot78/node-app:0.0.1
       - docker/push:
-          image: greendot78/node-app
+          image: greendot78/node-app:0.0.1
 
 workflows:
   simple_workflow:
@@ -49,4 +49,3 @@ workflows:
       - publish:
           requires:
             - test
-
