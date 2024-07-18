@@ -48,11 +48,11 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-          echo "Deploying to Heroku"
-          heroku container:login
-          heroku stack:set container -a greendot78-su-devops
-          heroku container:push web -a greendot78-su-devops
-          heroku container:release web -a greendot78-su-devops
+            echo "Deploying to Heroku"
+            heroku container:login
+            heroku stack:set container -a greendot78-su-devops
+            heroku container:push web -a greendot78-su-devops
+            heroku container:release web -a greendot78-su-devops
 
 workflows:
   simple_workflow:
