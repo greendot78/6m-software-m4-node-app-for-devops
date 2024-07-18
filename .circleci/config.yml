@@ -35,9 +35,9 @@ jobs:
       - checkout
       - docker/check
       - docker/build
-          image: greendot78/node-app:0.0.1
+          image: greendot78/node-app
       - docker/push:
-          image: greendot78/node-app:0.0.1
+          image: greendot78/node-app
 
 workflows:
   simple_workflow:
