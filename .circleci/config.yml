@@ -38,6 +38,21 @@ jobs:
           image: greendot78/node-app
       - docker/push:
           image: greendot78/node-app
+  deploy:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - setup_remote_docker
+      - heroku/install
+      - checkout
+      - run:
+          name: Deploy to Heroku
+          command: |
+          echo "Deploying to Heroku"
+          heroku container:login
+          heroku stack:set container -a greendot78-su-devops
+          heroku container:push web -a greendot78-su-devops
+          heroku container:release web -a greendot78-su-devops
 
 workflows:
   simple_workflow:
@@ -49,3 +64,6 @@ workflows:
       - publish:
           requires:
             - test
+      - deploy:
+          requires:
+            - publish
