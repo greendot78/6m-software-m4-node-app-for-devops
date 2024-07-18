@@ -1,6 +1,6 @@
 // This is the only function that will be called by the endpoint.
 function print(req, res) {
-  res.send("Hello world!! From greendot78");
+  res.send("This is the home page from greendot78");
 }
 
 module.exports = print;
