@@ -37,8 +37,8 @@ jobs:
           name: Build and push Docker image
           command: |
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker build -t yourusername/yourimagename:tag .
-            docker push yourusername/yourimagename:tag
+            docker build -t greendot78/node-app:0.0.1 .
+            docker push greendot78/node-app:0.0.1
 
 workflows:
   simple_workflow:
