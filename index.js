@@ -8,6 +8,13 @@ app.use(express.json());
 const print = require("./home");
 app.get("/home", print);
 
+// Vulnerable endpoint using eval()
+app.get("/eval", (req, res) => {
+  const input = req.query.input;
+  eval(`console.log(${input})`); // Insecure use of eval with user input
+  res.send("Eval executed");
+});
+
 // post /user route
 app.post("/user", function (req, res) {
   const { name, email, password } = req.body; // Destructure the user object from the request body
