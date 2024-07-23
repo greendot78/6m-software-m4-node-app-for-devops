@@ -21,6 +21,20 @@ jobs:
             docker-image-name: $IMAGE_NAME
             severity-threshold: high
             fail-on-issues: false
+  codescan:
+    docker:
+      - image: cimg/node:16.10
+    environment:
+      IMAGE_NAME: greendot78/education-space
+    steps:
+      - checkout
+      - setup_remote_docker
+      - docker/check
+      - run: docker build -t $IMAGE_NAME .
+      - snyk/install
+      - run: |
+          snyk code test
+
   build:
     docker:
       - image: cimg/node:16.10
@@ -85,6 +99,13 @@ workflows:
               only:
                 - main
       - scan:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
+      - codescan:
           requires:
             - build
           filters:
